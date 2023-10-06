@@ -8,7 +8,7 @@ import {
 } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import Leaflet from 'leaflet';
-import Pusher from 'pusher-js';
+import pusher from '../config/pusher';
 import { useEffect, useState } from 'react';
 import axios from '../config/axios';
 
@@ -16,14 +16,10 @@ const LiveMap = () => {
 	const [dronePoses, setDronePoses] = useState([]);
 
 	useEffect(() => {
-		var pusher = new Pusher(import.meta.env.VITE_PUSHER_APP_KEY, {
-			cluster: 'eu',
-		});
-
 		axios.get('/api/uavs').then((res) => {
 			const uavs = res.data.map((uavJSON) => uavJSON['name']);
 			uavs.forEach((uav) => {
-				var channel = pusher.subscribe(uav);
+				const channel = pusher.subscribe(uav);
 				channel.bind('data_updated', (data) => updatePoses(uav, data));
 			});
 			axios.post('/api/uavs/data_streaming/start', {
