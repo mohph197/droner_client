@@ -32,41 +32,34 @@
 
 // export default App;
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
+import Header from './components/Header';
+import LiveMap from './pages/LiveMap';
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <div className="flex w-screen h-screen overflow-hidden">
-        <Sidebar />
-        <div className="w-[100%]">
-          <Header />
-          <div className="p-2 h-screen">
-            <Routes>
-              <Route path="/" element={<LiveMap />} />
-              <Route path="/manage" element={<Manage />} />
-              <Route path="/settings" element={<Settings />} />
-            </Routes>
-          </div>
-        </div>
-      </div>
-    </BrowserRouter>
-  );
+	return (
+		<BrowserRouter>
+			<div className='flex flex-col w-screen h-screen overflow-hidden'>
+				<Header />
+				<div className='flex-1'>
+					<Routes>
+						<Route path='/' element={<LiveMap />} />
+						<Route path='/manage' element={<Manage />} />
+						<Route path='/settings' element={<Settings />} />
+					</Routes>
+				</div>
+			</div>
+		</BrowserRouter>
+	);
 };
 
 export default App;
 
-function LiveMap() {
-  return <h1>LiveMap</h1>;
-}
-
 function Manage() {
-  return <h1>Manage</h1>;
+	return <h1>Manage</h1>;
 }
 
 function Settings() {
-  return <h1>Settings</h1>;
+	return <h1>Settings</h1>;
 }
