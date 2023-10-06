@@ -3,6 +3,7 @@ import { useState } from "react";
 import { GiDeliveryDrone } from "react-icons/gi";
 import pusher from "../../config/pusher";
 import moment from "moment/moment";
+import axios from "../../config/axios";
 import drone from "../../assets/drones/Drone-Model-1.svg";
 
 function Activity() {
@@ -17,7 +18,7 @@ function Activity() {
       if (activityIndex !== -1) {
         const newActivityData = [...prevActivityData];
         const oldActivity = prevActivityData[activityIndex].activity;
-        newActivityData[activityIndex].activity = data["in_air"]
+        newActivityData[activityIndex].activity = data["status"]["in_air"]
           ? "Traveling"
           : "Parked";
         newActivityData[activityIndex].timeStamp =
@@ -28,7 +29,7 @@ function Activity() {
           moment
             .duration(Date.now() - newActivityData[activityIndex].timeStamp)
             .humanize() + " ago";
-        newActivityData[activityIndex].color = data["in_air"]
+        newActivityData[activityIndex].color = data["status"]["in_air"]
           ? "#059669"
           : "#EF4444";
         return [...newActivityData];
@@ -49,10 +50,12 @@ function Activity() {
   };
 
   useEffect(() => {
-    pusher.allChannels().forEach((channel) => {
-      channel.bind("data_updated", (data) =>
-        updateActivityData(channel.name, data)
-      );
+    axios.get("/api/uavs").then((res) => {
+      const uavs = res.data.map((uavJSON) => uavJSON["name"]);
+      uavs.forEach((uav) => {
+        const channel = pusher.subscribe(uav);
+        channel.bind("data_updated", (data) => updateActivityData(uav, data));
+      });
     });
   }, []);
 
