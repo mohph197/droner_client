@@ -5,8 +5,8 @@ import { MdBatteryAlert } from "react-icons/md";
 function Alerts() {
   const alertsData = [
     {
-      uav: "UAV 2",
-      drone: "Drone C45",
+      uav: "UAV 4",
+      drone: "UAV4",
       info: "Battery Low",
       time: "5min ago",
       color: "#EF4444",

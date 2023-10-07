@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
@@ -28,6 +32,6 @@ progress[value]::-webkit-progress-bar {
 }
 
 progress[value]::-webkit-progress-value {
-  background-color: #03dabb;
+  background-color: #0073e6;
   border-radius: 2px;
 }
