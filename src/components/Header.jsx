@@ -35,7 +35,7 @@ const Header = () => {
       transitionTimingFunction="ease-in-out"
       backgroundColor="#fff"
       zIndex={1}
-      className="text-base border-b-black border-b"
+      className="text-base border-b-[#ccd3c5] border-b"
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack

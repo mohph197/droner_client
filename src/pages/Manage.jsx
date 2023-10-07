@@ -67,7 +67,7 @@ const Manage = () => {
             <Table variant="simple">
               <Thead>
                 <Tr>
-                  <Th>Dron name</Th>
+                  <Th>Drone name</Th>
                   <Th>Name</Th>
                   <Th>Starting Date</Th>
                   <Th isNumeric>Starting Point</Th>
@@ -132,6 +132,7 @@ const Manage = () => {
               <input
                 type="text"
                 id="uav"
+                placeholder="UAV"
                 name="uav"
                 value={formData.uav}
                 onChange={handleChange}
@@ -148,6 +149,7 @@ const Manage = () => {
               <input
                 type="text"
                 id="name"
+                placeholder="Enter mission name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -159,12 +161,13 @@ const Manage = () => {
                 htmlFor="desc"
                 className="block text-gray-700 font-semibold"
               >
-                Desc:
+                Mission Description:
               </label>
               <input
                 type="text"
                 id="desc"
                 name="desc"
+                placeholder="Enter mission description"
                 value={formData.desc}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"

@@ -19,6 +19,7 @@ import { TbDrone } from "react-icons/tb";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { RiGpsFill } from "react-icons/ri";
 import { LiaSatelliteSolid } from "react-icons/lia";
+import preloader from "../assets/preloader.gif";
 
 function Sidebar() {
   const [selectedOption, setSelectedOption] = useState("Units");
@@ -49,7 +50,7 @@ function Sidebar() {
   }, [selectedDrone]);
 
   return (
-    <div className="px-2 py-4 bottom-0 w-96 h-[calc(100vh-41px)] border-r border-r-black overflow-y-scroll">
+    <div className="px-2 py-4 bottom-0 w-96 h-[calc(100vh-41px)] border-r border-r-[#ccd3c5] overflow-y-scroll">
       {selectedDrone ? (
         selectedData ? (
           <div>
@@ -248,7 +249,9 @@ function Sidebar() {
             </div>
           </div>
         ) : (
-          <h1>Loading ...</h1>
+          <div className="w-full h-full flex items-center justify-center">
+            <img src={preloader} alt="preloader" className="w-36 h-28" />
+          </div>
         )
       ) : (
         <div className="flex flex-col gap-2 ">
