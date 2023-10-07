@@ -11,9 +11,11 @@ import Leaflet from 'leaflet';
 import pusher from '../config/pusher';
 import { useEffect, useState } from 'react';
 import axios from '../config/axios';
+import { useSelectedDroneContext } from '../hooks/useSelectedDroneContext';
 
 const LiveMap = () => {
 	const [dronePoses, setDronePoses] = useState([]);
+	const { updateSelectedDrone } = useSelectedDroneContext();
 
 	useEffect(() => {
 		axios.get('/api/uavs').then((res) => {
@@ -98,6 +100,12 @@ const LiveMap = () => {
 							iconAnchor: [25, 25],
 							iconSize: [60, 60],
 						})}
+						eventHandlers={{
+							click: () => {
+								console.log(`Clicked ${dronePose.name}`);
+								updateSelectedDrone(dronePose.name);
+							},
+						}}
 					/>
 				))}
 			</MapContainer>
