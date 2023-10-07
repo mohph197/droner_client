@@ -34,6 +34,7 @@ const Manage = () => {
                     <Thead>
                         <Tr>
                             <Th>Dron name</Th>
+                            <Th>Name</Th>
                             <Th>Starting Date</Th>
                             <Th isNumeric>Starting Point</Th>
                             <Th isNumeric>Destination Point</Th>
@@ -49,6 +50,7 @@ const Manage = () => {
                                     <img src={dron} width={40} />
                                     {mission.uav}
                                 </Td>
+                                <Td>{mission.name}</Td>
                                 <Td>
                                     {moment(mission.starting_date).format("DD/MM/YYYY HH:MM:SS")}
                                 </Td>

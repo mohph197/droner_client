@@ -7,7 +7,7 @@ const Header = () => {
     const pages = [
         {
             id: 1,
-            name: "Manage",
+            name: "Missions",
             link: "/manage",
         },
         {
