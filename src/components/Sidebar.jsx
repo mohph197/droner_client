@@ -6,10 +6,18 @@ import axios from "../config/axios";
 import drone from "../assets/drones/Drone-Model-1.svg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import dronePng from "../assets/drones/drone.png";
-import { TbCircuitVoltmeter } from "react-icons/tb";
-import { PiBatteryEmpty } from "react-icons/pi";
+import {
+  TbCircuitVoltmeter,
+  TbWorldLatitude,
+  TbWorldLongitude,
+} from "react-icons/tb";
 import { useModalsContext } from "../hooks/useModalsContext";
 import StreamModal from "./StreamModal";
+import { FiTarget } from "react-icons/fi";
+import { TbDrone } from "react-icons/tb";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { RiGpsFill } from "react-icons/ri";
+import { LiaSatelliteSolid } from "react-icons/lia";
 
 function Sidebar() {
   const [selectedOption, setSelectedOption] = useState("Activity");
@@ -109,13 +117,8 @@ function Sidebar() {
                       <div className="flex items-center gap-1">
                         <TbCircuitVoltmeter className="w-8 h-8" />
                         <h1 className="font-bold">
-                          Battery Voltage: {selectedData.battery.voltage_level}V
-                        </h1>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <PiBatteryEmpty className="w-7 h-7" />
-                        <h1 className="font-bold">
-                          battery ID: {selectedData.battery.id}
+                          Battery Voltage:{" "}
+                          {Math.round(selectedData.battery.voltage_level)}V
                         </h1>
                       </div>
                     </div>
@@ -134,18 +137,142 @@ function Sidebar() {
                           />
                         </div>
                       </div>
-                      <button className="bg-[#DC2626] text-white font-semibold py-2 px-6 rounded-lg">
+                      <button
+                        className="bg-[#DC2626] text-white font-semibold py-2 px-6 rounded-lg"
+                        onClick={() =>
+                          openModal(StreamModal, {
+                            streamURL: selectedData.rtc,
+                          })
+                        }
+                      >
                         Live Stream
                       </button>
                     </div>
                   </div>
                 ) : (
-                  <></>
+                  <div className="w-full flex flex-col items-center gap-2">
+                    <img src={drone} alt="drone" className="w-28 h-28" />
+                    <ul className="flex flex-col gap-4">
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <FiTarget className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Armed:
+                          </span>
+                          <span
+                            className={`font-bold ${
+                              selectedData.armed
+                                ? "text-[#047857]"
+                                : "text-[#DC2626]"
+                            }`}
+                          >
+                            {selectedData.armed ? "Yes" : "No"}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <TbDrone className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            State:
+                          </span>
+                          <span
+                            className={`font-bold ${
+                              selectedData.in_air
+                                ? "text-[#047857]"
+                                : "text-[#DC2626]"
+                            }`}
+                          >
+                            {selectedData.in_air ? "Traveling" : "Parked"}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <MdOutlineHealthAndSafety className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Health:
+                          </span>
+                          <span
+                            className={`font-bold ${
+                              selectedData.status.state >= 2
+                                ? "text-[#047857]"
+                                : "text-[#DC2626]"
+                            }`}
+                          >
+                            {selectedData.status.state >= 3
+                              ? "excellent"
+                              : selectedData.status.state >= 2
+                              ? "good"
+                              : selectedData.status.state >= 1
+                              ? "fair"
+                              : "poor"}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <RiGpsFill className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Gps Fixation:
+                          </span>
+                          <span className="text-black font-bold">
+                            {selectedData.gps.fx}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <LiaSatelliteSolid className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Satellite Number:
+                          </span>
+                          <span className="text-black font-bold">
+                            {selectedData.gps.satellites_number}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <TbWorldLatitude className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Latitude:
+                          </span>
+                          <span className="text-black font-bold">
+                            {selectedData.gps.lat}
+                          </span>
+                        </div>
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
+                            <TbWorldLongitude className="text-white" />
+                          </div>
+                          <span className="font-bold text-[#0073E6]">
+                            Longitude:
+                          </span>
+                          <span className="text-black font-bold">
+                            {selectedData.gps.lon}
+                          </span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
                 )}
               </div>
             </div>
-            {/* <h1>{selectedDrone}</h1>
-            <h1>{selectedData["battery"]["voltage_level"]}</h1> */}
           </div>
         ) : (
           <h1>Loading ...</h1>
