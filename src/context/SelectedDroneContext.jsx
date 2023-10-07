@@ -1,6 +1,9 @@
 import { createContext, useState } from 'react';
 
-export const SelectedDroneContext = createContext();
+export const SelectedDroneContext = createContext({
+	selectedDrone: null,
+	updateSelectedDrone: () => {},
+});
 
 import PropTypes from 'prop-types';
 

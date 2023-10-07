@@ -7,7 +7,7 @@ import axios from '../config/axios';
 function Sidebar() {
 	const [selectedOption, setSelectedOption] = useState('Activity');
 	const [selectedData, setSelectedData] = useState(null);
-	const { selectedDrone } = useSelectedDroneContext();
+	const { selectedDrone, updateSelectedDrone } = useSelectedDroneContext();
 	const options = [
 		{
 			name: 'Units',
@@ -39,6 +39,7 @@ function Sidebar() {
 			{selectedDrone ? (
 				selectedData ? (
 					<div>
+						<button onClick={() => updateSelectedDrone(null)}>Back</button>
 						<h1>{selectedDrone}</h1>
 						<h1>{selectedData['battery']['voltage_level']}</h1>
 					</div>
