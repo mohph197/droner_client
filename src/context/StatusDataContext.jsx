@@ -9,19 +9,26 @@ export const StatusDataContext = createContext({
 export const StatusDataProvider = ({ children }) => {
 	const [data, setData] = useState([]);
 
-	const updateData = (uav, data) => {
+	const updateData = (uav, newData) => {
 		setData((prevData) => {
-			const dataIndex = prevData.findIndex((data) => data.uav === uav);
+			const dataIndex = prevData.findIndex((prev) => prev.uav === uav);
 			if (dataIndex !== -1) {
-				const newData = [...prevData];
-				newData[dataIndex].data = data;
-				return [...newData];
+				const newTimeStamp =
+					prevData[dataIndex].data['status']['in_air'] ==
+					newData['status']['in_air']
+						? prevData[dataIndex].timeStamp
+						: Date.now();
+				const newContextData = [...prevData];
+				newContextData[dataIndex].data = newData;
+				newContextData[dataIndex].timeStamp = newTimeStamp;
+				return [...newContextData];
 			} else {
 				return [
 					...prevData,
 					{
 						uav: uav,
-						data: data,
+						data: newData,
+						timeStamp: Date.now(),
 					},
 				];
 			}

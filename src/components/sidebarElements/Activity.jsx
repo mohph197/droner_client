@@ -14,38 +14,28 @@ function Activity() {
 	const { data } = useStatusDataContext();
 
 	useEffect(() => {
-		setActivityData((prevActivityData) => {
-			return data.map((uavData) => {
-				const oldData = prevActivityData.find(
-					(activityData) => activityData.uav === uavData.uav
-				);
+		setActivityData(
+			data.map((uavData) => {
 				const newActivity = uavData.data['status']['in_air']
 					? 'Traveling'
 					: 'Parked';
-				const newTimeStamp =
-					oldData && oldData.activity == newActivity
-						? oldData.timeStamp
-						: Date.now();
 				const newTime =
-					oldData && oldData.activity == newActivity
-						? moment.duration(Date.now() - newTimeStamp).humanize() + ' ago'
-						: 'Just now';
+					moment.duration(Date.now() - uavData.timeStamp).humanize() + ' ago';
 				return {
 					uav: uavData.uav,
 					drone: uavData.uav,
 					activity: newActivity,
-					timeStamp: newTimeStamp,
 					time: newTime,
 					color: uavData.data['status']['in_air'] ? '#059669' : '#EF4444',
 				};
-			});
-		});
+			})
+		);
 	}, [data]);
 
 	return (
 		<ul>
 			{activityData.map((activity) => (
-				<>
+				<div key={activity.uav}>
 					<li
 						key={activity.uav}
 						onClick={() => {
@@ -83,7 +73,7 @@ function Activity() {
 						</div>
 					</li>
 					<div className='w-full h-[1px] bg-[#B9B9B9] opacity-50'></div>
-				</>
+				</div>
 			))}
 		</ul>
 	);
