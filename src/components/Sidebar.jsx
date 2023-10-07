@@ -6,6 +6,8 @@ import axios from "../config/axios";
 import drone from "../assets/drones/Drone-Model-1.svg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import dronePng from "../assets/drones/drone.png";
+import { TbCircuitVoltmeter } from "react-icons/tb";
+import { PiBatteryEmpty } from "react-icons/pi";
 
 function Sidebar() {
   const [selectedOption, setSelectedOption] = useState("Activity");
@@ -63,7 +65,7 @@ function Sidebar() {
               </div>
               <div className="w-full h-[1px] bg-[#B9B9B9] opacity-50"></div>
               <div className="w-full flex flex-col items-center">
-                <h1 className="text-2xl font-semibold text-center py-6">
+                <h1 className="text-2xl font-semibold text-center py-2">
                   UAV Stats
                 </h1>
                 <div className="flex gap-4">
@@ -101,13 +103,38 @@ function Sidebar() {
                         value={selectedData.battery.voltage_level}
                         max="30"
                       ></progress>
-                    </div>
-                    <div className="w-[90%] mt-6 flex flex-col gap-2 items-center">
-                      <div className="w-56 h-28 bg-black rounded-lg overflow-hidden">
-                        <img src={dronePng} alt="drone" />
+                      <div className="flex items-center gap-1">
+                        <TbCircuitVoltmeter className="w-8 h-8" />
+                        <h1 className="font-bold">
+                          Battery Voltage: {selectedData.battery.voltage_level}V
+                        </h1>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <PiBatteryEmpty className="w-7 h-7" />
+                        <h1 className="font-bold">
+                          battery ID: {selectedData.battery.id}
+                        </h1>
                       </div>
                     </div>
-                    <button className="">Live Stream</button>
+                    <div className="w-full h-[1px] bg-[#B9B9B9] opacity-50"></div>
+                    <div className="flex flex-col items-center justify-center gap-3">
+                      <div className="w-[90%] mt-6 flex flex-col gap-2 items-center">
+                        <div className="relative w-56 h-28 bg-black rounded-lg overflow-hidden">
+                          <div className="absolute flex items-center justify-center gap-1 top-2 right-3">
+                            <div className="w-2 h-2 bg-[#DC2626] rounded-full" />
+                            <p className="font-bold text-white text-xs">Live</p>
+                          </div>
+                          <img
+                            src={dronePng}
+                            alt="drone"
+                            className="opacity-50"
+                          />
+                        </div>
+                      </div>
+                      <button className="bg-[#DC2626] text-white font-semibold py-2 px-6 rounded-lg">
+                        Live Stream
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <></>
