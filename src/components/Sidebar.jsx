@@ -109,12 +109,6 @@ function Sidebar() {
                           Battery Voltage: {selectedData.battery.voltage_level}V
                         </h1>
                       </div>
-                      <div className="flex items-center gap-1">
-                        <PiBatteryEmpty className="w-7 h-7" />
-                        <h1 className="font-bold">
-                          battery ID: {selectedData.battery.id}
-                        </h1>
-                      </div>
                     </div>
                     <div className="w-full h-[1px] bg-[#B9B9B9] opacity-50"></div>
                     <div className="flex flex-col items-center justify-center gap-3">
