@@ -242,32 +242,6 @@ function Sidebar() {
                           </span>
                         </div>
                       </li>
-                      <li className="flex items-center gap-2">
-                        <div className="flex gap-1">
-                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
-                            <TbWorldLatitude className="text-white" />
-                          </div>
-                          <span className="font-bold text-[#0073E6]">
-                            Latitude:
-                          </span>
-                          <span className="text-black font-bold">
-                            {selectedData.gps.lat}
-                          </span>
-                        </div>
-                      </li>
-                      <li className="flex items-center gap-2">
-                        <div className="flex gap-1">
-                          <div className="bg-[#0073E6] rounded-full w-6 h-6 flex items-center justify-center">
-                            <TbWorldLongitude className="text-white" />
-                          </div>
-                          <span className="font-bold text-[#0073E6]">
-                            Longitude:
-                          </span>
-                          <span className="text-black font-bold">
-                            {selectedData.gps.lon}
-                          </span>
-                        </div>
-                      </li>
                     </ul>
                   </div>
                 )}
