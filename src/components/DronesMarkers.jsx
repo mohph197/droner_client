@@ -5,6 +5,7 @@ import axios from '../config/axios';
 import pusher from '../config/pusher';
 import { useEffect, useState } from 'react';
 import { useStatusDataContext } from '../hooks/useStatusDataContext';
+import droneIcon from '../../assets/images/drone.png';
 
 const DronesMarkers = () => {
 	const map = useMap();
@@ -39,7 +40,7 @@ const DronesMarkers = () => {
 						position={[dronePose.latitude, dronePose.longitude]}
 						alt={dronePose.name}
 						icon={Leaflet.icon({
-							iconUrl: '/assets/images/drone.png',
+							iconUrl: droneIcon,
 							iconAnchor: [25, 25],
 							iconSize: [60, 60],
 						})}
