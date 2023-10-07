@@ -21,3 +21,13 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+progress[value]::-webkit-progress-bar {
+  background-color: #e2e8f0;
+  border-radius: 2px;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #03dabb;
+  border-radius: 2px;
+}
