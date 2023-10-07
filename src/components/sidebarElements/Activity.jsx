@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { GiDeliveryDrone } from 'react-icons/gi';
 import pusher from '../../config/pusher';
 import moment from 'moment/moment';
 import axios from '../../config/axios';

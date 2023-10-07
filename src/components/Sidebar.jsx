@@ -8,12 +8,15 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import dronePng from "../assets/drones/drone.png";
 import { TbCircuitVoltmeter } from "react-icons/tb";
 import { PiBatteryEmpty } from "react-icons/pi";
+import { useModalsContext } from "../hooks/useModalsContext";
+import StreamModal from "./StreamModal";
 
 function Sidebar() {
   const [selectedOption, setSelectedOption] = useState("Activity");
   const [selectedData, setSelectedData] = useState(null);
   const { selectedDrone, updateSelectedDrone } = useSelectedDroneContext();
   const [selectedInfo, setSelectedInfo] = useState("battery");
+  const { openModal } = useModalsContext();
   const options = [
     {
       name: "Units",
@@ -107,6 +110,12 @@ function Sidebar() {
                         <TbCircuitVoltmeter className="w-8 h-8" />
                         <h1 className="font-bold">
                           Battery Voltage: {selectedData.battery.voltage_level}V
+                        </h1>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <PiBatteryEmpty className="w-7 h-7" />
+                        <h1 className="font-bold">
+                          battery ID: {selectedData.battery.id}
                         </h1>
                       </div>
                     </div>

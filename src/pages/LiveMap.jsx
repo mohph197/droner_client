@@ -24,7 +24,7 @@ const LiveMap = () => {
 		<div className='flex w-full h-full'>
 			<Sidebar />
 			<MapContainer
-				className='w-full h-full'
+				className='w-full h-full isolate -z-10'
 				center={[51.505, -0.09]}
 				zoom={13}
 			>
