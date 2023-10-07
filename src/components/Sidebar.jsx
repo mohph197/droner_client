@@ -21,14 +21,14 @@ import { RiGpsFill } from "react-icons/ri";
 import { LiaSatelliteSolid } from "react-icons/lia";
 
 function Sidebar() {
-  const [selectedOption, setSelectedOption] = useState("Activity");
+  const [selectedOption, setSelectedOption] = useState("Units");
   const [selectedData, setSelectedData] = useState(null);
   const { selectedDrone, updateSelectedDrone } = useSelectedDroneContext();
   const [selectedInfo, setSelectedInfo] = useState("battery");
   const { openModal } = useModalsContext();
   const options = [
     {
-      name: "Activity",
+      name: "Units",
       component: <Activity />,
     },
     {
@@ -80,7 +80,7 @@ function Sidebar() {
                   <div
                     className={`cursor-pointer ${
                       selectedInfo === "battery" &&
-                      `font-bold text-[#0073E6] underline underline-thickness:2px`
+                      `font-bold text-[#0073E6] underline underline-offset-4`
                     }`}
                     onClick={() => {
                       setSelectedInfo("battery");
@@ -91,7 +91,7 @@ function Sidebar() {
                   <div
                     className={`cursor-pointer ${
                       selectedInfo === "status" &&
-                      `font-bold text-[#0073E6] underline underline-thickness:2px`
+                      `font-bold text-[#0073E6] underline underline-thickness:2px underline-offset-4`
                     }`}
                     onClick={() => {
                       setSelectedInfo("status");
@@ -258,8 +258,9 @@ function Sidebar() {
                 key={option.name}
                 spacing={4}
                 className={`${
-                  selectedOption === option.name && "font-bold text-black"
-                } cursor-pointer rounded-md`}
+                  selectedOption === option.name &&
+                  " text-[#0073E6] underline underline-thickness:2px underline-offset-4"
+                } font-bold text-lg cursor-pointer rounded-md`}
                 onClick={() => {
                   setSelectedOption(option.name);
                 }}

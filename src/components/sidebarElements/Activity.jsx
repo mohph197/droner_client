@@ -45,42 +45,45 @@ function Activity() {
 	return (
 		<ul>
 			{activityData.map((activity) => (
-				<li
-					key={activity.uav}
-					onClick={() => {
-						setSelectedDroneUav(activity.uav);
-						updateSelectedDrone(activity.uav);
-					}}
-					className={`py-2 px-4 rounded-lg cursor-pointer ${
-						activity.uav === selectedDroneUav ? 'bg-[#ccd3c5]' : ''
-					}`}
-				>
-					<div className='flex items-center gap-2'>
-						<img src={drone} alt='drone' className='w-20 h-20' />
-						<div className='flex flex-col w-full'>
-							<span className='text-lg font-bold'>
-								{activity.drone.toUpperCase()}
-							</span>
-							<div className='flex justify-between items-center'>
-								<div className='flex items-center'>
-									<div
-										className='w-2 h-2 rounded-full'
-										style={{ backgroundColor: activity.color }}
-									/>
-									<span
-										style={{ color: activity.color }}
-										className='text-xs font-bold'
-									>
-										{activity.activity}
+				<>
+					<li
+						key={activity.uav}
+						onClick={() => {
+							setSelectedDroneUav(activity.uav);
+							updateSelectedDrone(activity.uav);
+						}}
+						className={`py-2 px-4 rounded-lg cursor-pointer hover:bg-[#ccd3c5] transition duration-200 ease-in-out ${
+							activity.uav === selectedDroneUav ? 'bg-[#ccd3c5]' : ''
+						}`}
+					>
+						<div className='flex items-center gap-2'>
+							<img src={drone} alt='drone' className='w-20 h-20' />
+							<div className='flex flex-col w-full'>
+								<span className='text-lg font-bold'>
+									{activity.drone.toUpperCase()}
+								</span>
+								<div className='flex justify-between items-center'>
+									<div className='flex items-center'>
+										<div
+											className='w-2 h-2 rounded-full'
+											style={{ backgroundColor: activity.color }}
+										/>
+										<span
+											style={{ color: activity.color }}
+											className='text-xs font-bold'
+										>
+											{activity.activity}
+										</span>
+									</div>
+									<span className='font-bold text-[10px] text-[rgb(117,116,116)]'>
+										{activity.time}
 									</span>
 								</div>
-								<span className='text-[10px] text-[#B9B9B9]'>
-									{activity.time}
-								</span>
 							</div>
 						</div>
-					</div>
-				</li>
+					</li>
+					<div className='w-full h-[1px] bg-[#B9B9B9] opacity-50'></div>
+				</>
 			))}
 		</ul>
 	);
