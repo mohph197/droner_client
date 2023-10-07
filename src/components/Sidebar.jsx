@@ -6,6 +6,7 @@ import axios from "../config/axios";
 import drone from "../assets/drones/Drone-Model-1.svg";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import dronePng from "../assets/drones/drone.png";
+import Alerts from "./sidebarElements/Alerts";
 import {
   TbCircuitVoltmeter,
   TbWorldLatitude,
@@ -27,16 +28,12 @@ function Sidebar() {
   const { openModal } = useModalsContext();
   const options = [
     {
-      name: "Units",
-      component: <div>Units</div>,
-    },
-    {
       name: "Activity",
       component: <Activity />,
     },
     {
       name: "Alerts",
-      component: <div>Alerts</div>,
+      component: <Alerts />,
     },
   ];
 
@@ -163,12 +160,12 @@ function Sidebar() {
                           </span>
                           <span
                             className={`font-bold ${
-                              selectedData.armed
+                              selectedData.status.armed
                                 ? "text-[#047857]"
                                 : "text-[#DC2626]"
                             }`}
                           >
-                            {selectedData.armed ? "Yes" : "No"}
+                            {selectedData.status.armed ? "Yes" : "No"}
                           </span>
                         </div>
                       </li>
@@ -182,12 +179,14 @@ function Sidebar() {
                           </span>
                           <span
                             className={`font-bold ${
-                              selectedData.in_air
+                              selectedData.status.in_air
                                 ? "text-[#047857]"
                                 : "text-[#DC2626]"
                             }`}
                           >
-                            {selectedData.in_air ? "Traveling" : "Parked"}
+                            {selectedData.status.in_air
+                              ? "Traveling"
+                              : "Parked"}
                           </span>
                         </div>
                       </li>
@@ -207,12 +206,12 @@ function Sidebar() {
                             }`}
                           >
                             {selectedData.status.state >= 3
-                              ? "excellent"
+                              ? "Excellent"
                               : selectedData.status.state >= 2
-                              ? "good"
+                              ? "Good"
                               : selectedData.status.state >= 1
-                              ? "fair"
-                              : "poor"}
+                              ? "Fair"
+                              : "Poor"}
                           </span>
                         </div>
                       </li>
