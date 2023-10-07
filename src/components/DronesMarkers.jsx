@@ -82,7 +82,7 @@ const DronesMarkers = () => {
                         }}
                     >
                         <Tooltip direction="top" offset={[10, 10]}>
-                            {dronePose.name}
+                            {dronePose.name.toUpperCase()}
                         </Tooltip>
                     </Marker>
                 );
