@@ -74,13 +74,6 @@ function Activity() {
           <div className="flex items-center gap-2">
             <img src={drone} alt="drone" className="w-20 h-20" />
             <div className="flex flex-col w-full">
-              {/* <span
-                style={{ color: activity.color }}
-                
-              >
-                {activity.activity}
-              </span>
-              <span className="text-xs font-bold">{activity.drone}</span> */}
               <span className="text-lg font-bold">
                 {activity.drone.toUpperCase()}
               </span>
@@ -92,12 +85,14 @@ function Activity() {
                   />
                   <span
                     style={{ color: activity.color }}
-                    className="text-sm font-bold"
+                    className="text-xs font-bold"
                   >
                     {activity.activity}
                   </span>
                 </div>
-                <span className="text-[10px]">{activity.time}</span>
+                <span className="text-[10px] text-[#B9B9B9]">
+                  {activity.time}
+                </span>
               </div>
             </div>
           </div>
